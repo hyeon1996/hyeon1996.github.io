@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>S2Q</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+      color: #222;
+    }
+    h1, h2 {
+      color: #111;
+    }
+    pre {
+      background: #f6f8fa;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: Consolas, Monaco, monospace;
+    }
+    .paper-title {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Retaining Suboptimal Actions to Follow Shifting Optima in Multi-Agent Reinforcement Learning</h1>
+
+  <p>
+    This repository contains the implementation of the paper
+    <span class="paper-title">"Retaining Suboptimal Actions to Follow Shifting Optima in Multi-Agent Reinforcement Learning"</span>,
+    accepted to ICLR 2026.
+  </p>
+
+  <h2>Installation Guide</h2>
+
+  <ol>
+    <li>
+      Create conda environment:
+      <pre><code>conda create -n S2Q python=3.8</code></pre>
+    </li>
+
+    <li>
+      Activate conda environment:
+      <pre><code>conda activate S2Q</code></pre>
+    </li>
+
+    <li>
+      Install Python packages:
+      <pre><code>bash install_dependencies.sh</code></pre>
+    </li>
+
+    <li>
+      Install SMAC:
+      <pre><code>bash install_sc2.sh</code></pre>
+    </li>
+
+    <li>
+      Install Google Research Football:
+      <pre><code>bash install_gfootball.sh</code></pre>
+    </li>
+  </ol>
+
+  <h2>Command Line Tool</h2>
+
+  <h3>Run experiments</h3>
+
+  <pre><code># SMAC-Hard+
+python3 s2q_smac/src/main.py --config=qmix_att --env-config=sc2 with env_args.map_name="5m_vs_6m"
+
+# SMAC-Comm
+python3 s2q_smac/src/main.py --config=s2q_comm --env-config=sc2 with env_args.map_name="1o_2r_vs_4r"
+
+# SMACv2
+python3 s2q_smac/src/main.py --config=s2q --env-config=sc2v2 with env_args.map_name="terran_5_vs_5"
+
+# GRF
+python3 s2q_grf/src/main.py --config=s2q --env-config=grf with env_args.map_name=academy_3_vs_2</code></pre>
+
+  <p>
+    The default setups for an algorithm or environment are represented as config files located in
+    <code>src/config</code>.
+  </p>
+
+  <ul>
+    <li><code>--config</code> refers to config files in <code>src/config/algs</code>.</li>
+    <li><code>--env-config</code> refers to config files in <code>src/config/envs</code>.</li>
+  </ul>
+
+  <h2>WandB Tracking</h2>
+
+  <p>
+    To enable experiment tracking with WandB, set the following configurations in
+    <code>src/config/default.yaml</code>:
+  </p>
+
+  <pre><code>use_wandb: # Log results to W&amp;B
+wandb_team: # W&amp;B team name
+wandb_project: # W&amp;B project name</code></pre>
+
+</body>
+</html>
