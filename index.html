@@ -4,107 +4,167 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>S2Q</title>
+
   <style>
     body {
+      margin: 0;
+      padding: 0;
       font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #111111;
+    }
+
+    .container {
       max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-      line-height: 1.6;
-      color: #222;
+      margin: 0 auto;
+      padding: 80px 24px;
+      text-align: center;
     }
-    h1, h2 {
-      color: #111;
+
+    h1 {
+      font-size: 2.7rem;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      font-weight: 700;
     }
+
+    .authors {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .affiliation {
+      font-size: 1rem;
+      color: #666666;
+      margin-bottom: 40px;
+    }
+
+    .conference {
+      display: inline-block;
+      margin-bottom: 40px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: #f0f0f0;
+      font-weight: 600;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    .button {
+      text-decoration: none;
+      background: #111111;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .button:hover {
+      background: #333333;
+      transform: translateY(-2px);
+    }
+
+    .abstract {
+      text-align: left;
+      margin-top: 40px;
+    }
+
+    .abstract h2 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .abstract p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #333333;
+    }
+
     pre {
       background: #f6f8fa;
-      padding: 16px;
-      border-radius: 8px;
+      padding: 20px;
+      border-radius: 10px;
       overflow-x: auto;
+      text-align: left;
+      margin-top: 20px;
     }
+
     code {
-      font-family: Consolas, Monaco, monospace;
-    }
-    .paper-title {
-      font-weight: bold;
+      font-family: Consolas, monospace;
     }
   </style>
 </head>
+
 <body>
 
-  <h1>Retaining Suboptimal Actions to Follow Shifting Optima in Multi-Agent Reinforcement Learning</h1>
+  <div class="container">
 
-  <p>
-    This repository contains the implementation of the paper
-    <span class="paper-title">"Retaining Suboptimal Actions to Follow Shifting Optima in Multi-Agent Reinforcement Learning"</span>,
-    accepted to ICLR 2026.
-  </p>
+    <h1>
+      Retaining Suboptimal Actions to Follow Shifting Optima in Multi-Agent Reinforcement Learning
+    </h1>
 
-  <h2>Installation Guide</h2>
+    <div class="authors">
+      Yonghyeon Jo, Sunwoo Lee, Seungyul Han
+    </div>
 
-  <ol>
-    <li>
-      Create conda environment:
-      <pre><code>conda create -n S2Q python=3.8</code></pre>
-    </li>
+    <div class="affiliation">
+      Affiliation / Lab Name
+    </div>
 
-    <li>
-      Activate conda environment:
-      <pre><code>conda activate S2Q</code></pre>
-    </li>
+    <div class="conference">
+      Accepted to ICLR 2026
+    </div>
 
-    <li>
-      Install Python packages:
-      <pre><code>bash install_dependencies.sh</code></pre>
-    </li>
+    <div class="button-group">
 
-    <li>
-      Install SMAC:
-      <pre><code>bash install_sc2.sh</code></pre>
-    </li>
+      <a class="button"
+         href="https://github.com/hyeon1996/S2Q"
+         target="_blank">
+        Code
+      </a>
 
-    <li>
-      Install Google Research Football:
-      <pre><code>bash install_gfootball.sh</code></pre>
-    </li>
-  </ol>
+      <a class="button"
+         href="#citation">
+        Cite
+      </a>
 
-  <h2>Command Line Tool</h2>
+    </div>
 
-  <h3>Run experiments</h3>
+    <div class="abstract">
 
-  <pre><code># SMAC-Hard+
-python3 s2q_smac/src/main.py --config=qmix_att --env-config=sc2 with env_args.map_name="5m_vs_6m"
+      <h2>Abstract</h2>
 
-# SMAC-Comm
-python3 s2q_smac/src/main.py --config=s2q_comm --env-config=sc2 with env_args.map_name="1o_2r_vs_4r"
+      <p>
+        We study the challenge of shifting optima in cooperative multi-agent reinforcement learning (MARL),
+        where agents prematurely discard suboptimal actions that later become necessary for coordination.
+        To address this issue, we propose S2Q, a method that explicitly preserves useful suboptimal behaviors
+        to improve adaptation and robustness under changing coordination dynamics.
+      </p>
 
-# SMACv2
-python3 s2q_smac/src/main.py --config=s2q --env-config=sc2v2 with env_args.map_name="terran_5_vs_5"
+    </div>
 
-# GRF
-python3 s2q_grf/src/main.py --config=s2q --env-config=grf with env_args.map_name=academy_3_vs_2</code></pre>
+    <div class="abstract" id="citation">
 
-  <p>
-    The default setups for an algorithm or environment are represented as config files located in
-    <code>src/config</code>.
-  </p>
+      <h2>Citation</h2>
 
-  <ul>
-    <li><code>--config</code> refers to config files in <code>src/config/algs</code>.</li>
-    <li><code>--env-config</code> refers to config files in <code>src/config/envs</code>.</li>
-  </ul>
+<pre><code>@inproceedings{jo2026retain,
+  title={Retaining Suboptimal Actions to Follow Shifting Optima in Multi-Agent Reinforcement Learning},
+  author={Yonghyeon Jo, Sunwoo Lee, Seungyul Han},
+  booktitle={International Conference on Learning Representations (ICLR)},
+  year={2026}
+}</code></pre>
 
-  <h2>WandB Tracking</h2>
+    </div>
 
-  <p>
-    To enable experiment tracking with WandB, set the following configurations in
-    <code>src/config/default.yaml</code>:
-  </p>
-
-  <pre><code>use_wandb: # Log results to W&amp;B
-wandb_team: # W&amp;B team name
-wandb_project: # W&amp;B project name</code></pre>
+  </div>
 
 </body>
 </html>
